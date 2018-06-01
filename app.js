@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
+var pollRouter = require('./routes/poll');
+var voteRouter = require('./routes/vote');
 var verifyTokenMiddleware = require("./server/middleware/verifyToken");
 
 var app = express();
@@ -26,6 +28,10 @@ app.use(verifyTokenMiddleware);
 app.use('/', indexRouter);
 app.use('/api/misc/', usersRouter);
 app.use('/api/misc/*', usersRouter);
+app.use('/api/poll/', pollRouter);
+app.use('/api/poll/*', pollRouter);
+app.use('/api/vote/', voteRouter);
+app.use('/api/vote/*', voteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

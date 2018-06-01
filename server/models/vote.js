@@ -5,14 +5,14 @@ const _ = require("lodash");
 const mongoose = require("../config/mongo").mongoose;
 const utils = require("../helpers/utils");
 
-var PollSchema = mongoose.Schema({
-    pollName: {
+var VoteSchema = mongoose.Schema({
+    option: {
         type: String,
         required: true
     },
-    options: {
-        type: [String],
-        required: true
+    pollId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Polls"
     },
     creatorId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -20,14 +20,10 @@ var PollSchema = mongoose.Schema({
     }
 });
 
-PollSchema.statics.getAll = function(){
-    return Poll.find({})
+VoteSchema.statics.getByPollId = function(pollId){
+    return Poll.find({pollId})
 }
 
-PollSchema.statics.getById = function(_id){
-    return Poll.findById(_id)
-}
+var Vote = mongoose.model("Votes", VoteSchema, "Votes");
 
-var Poll = mongoose.model("Polls", PollSchema, "Polls");
-
-module.exports.Poll = Poll;
+module.exports.Vote = Vote;
