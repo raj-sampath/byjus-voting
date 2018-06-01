@@ -1,0 +1,12 @@
+{
+    "development": {
+        "MONGODB_URI": "mongodb://localhost:27017/ByjusPoll",
+        "JWT_SALT": "NoH7DmzYgvWc9bObEluo",
+        "SALT_ROUNDS": 15
+    },
+    "test": {
+        "MONGODB_URI": "mongodb://localhost:27017/ByjusPollTest",
+        "JWT_SALT": "v719bft0QQg7EyBrfYYO",
+        "SALT_ROUNDS": 25
+    }
+}
