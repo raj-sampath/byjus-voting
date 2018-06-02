@@ -1,2 +1,31 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ByJus Voting System</title>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" >
+    </head>
+    <body>
+        <form method="POST" action="#">
+            <div id="login-reg-from">
+                <h2> {{ appHeading }} </h2>
+                <div><input type="email" placeholder="Email"></div>
+                <div><input type="password" placeholder="Password"></div>
+                <input type="button" value="Sign Up"> <input type="button" value="Login"> 
+            </div>
+        </form>
+
+        <script type="text/javascript" src="https://unpkg.com/vue"></script>
+        <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!-- <script type="text/javascript" src="javascripts/main.js"></script> -->
+        <script type="text/javascript">
+        var app = new Vue({
+            el: "#login-reg-from",
+            data: {
+                appHeading: "Byjus App"
+            }
+        });
+        </script>
+    </body>
+</html>
+
+
