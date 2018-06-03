@@ -7,8 +7,32 @@ const _ = require("lodash");
 const Vote = require("../server/models/vote").Vote;
 const Poll = require("../server/models/poll").Poll;
 
-router.get('/:pollId', function(req, res, next) {
-    
+router.get('/:_id', function(req, res, next) {
+    var _id = req.params._id;
+    if(utils.isNullOrUndefined(_id)){
+        res.status(401).send(utils.genericFailure("Invalid Request"))
+    }
+    else{
+        try{
+            var objId = ObjectId(_id);
+            var user = req.userObj;
+            Vote.getByPollId(_id)
+                .then((votes) => {
+                    if(votes.length == 0)
+                        res.status(404).send(utils.genericFailure("Resource Not Found!!!"));
+                    else{
+                        res.status(200).send(utils.genericFetchSuccess(Vote, votes));
+                    }
+                })
+                .catch((e) => {
+                    res.status(500).send(utils.genericFailure("Server Error !!!"));
+                })
+
+        }
+        catch(e){
+            res.status(401).send(utils.genericFailure("Invalid Resource Id"))
+        }
+    }
 });
 
 router.post('/', function(req, res, next) {

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ByJus Voting System</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" >
+    </head>
+    <body>
+        <canvas id="myChart" width="50" height="50"></canvas>
+
+        <script type="text/javascript" src="https://unpkg.com/vue"></script>
+        <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+        <script src="https://unpkg.com/vuex@2.0.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-session@1.0.0/index.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+        <script type="text/javascript">
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myPieChart = new Chart(ctx,{
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [10, 20, 30],
+                        backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ]
+                    }],
+                    labels: [
+                        'Red',
+                        'Yellow',
+                        'Blue'
+                    ]
+                }
+            });
+        </script>
+
+        <script type="text/javascript" src="javascripts/config.js"></script>
+    </body>
+</html>

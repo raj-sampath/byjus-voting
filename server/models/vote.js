@@ -2,6 +2,7 @@ const validate =  require("validator");
 const bcrypt =  require("bcrypt");
 
 const _ = require("lodash");
+const ObjectId = require("mongoose").Types.ObjectId;
 const mongoose = require("../config/mongo").mongoose;
 const utils = require("../helpers/utils");
 
@@ -21,7 +22,20 @@ var VoteSchema = mongoose.Schema({
 });
 
 VoteSchema.statics.getByPollId = function(pollId){
-    return Poll.find({pollId})
+    var aggCondition = [
+        {
+            $match: {
+                pollId: ObjectId(pollId)
+            }
+        },
+        {
+            $group: {
+                _id: "$option",
+                count: {$sum: 1}
+            }
+        }
+    ];
+    return Vote.aggregate(aggCondition);
 }
 
 var Vote = mongoose.model("Votes", VoteSchema, "Votes");

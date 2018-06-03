@@ -1,13 +1,3 @@
-const router = new VueRouter();
-const store = new Vuex.Store({
-    state: {
-        token: undefined
-    }
-});
-
-Vue.use(VueResource);
-Vue.use(Vuex)
-
 var loginApp = new Vue({
     router,
     store,
@@ -16,6 +6,11 @@ var loginApp = new Vue({
         appHeading: "Byjus App",
         email: "",
         password: "",
+    },
+    beforeCreate: function(){
+        if (this.$session.exists()) {
+            window.location.href = "/dashboard.html";
+          }
     },
     methods: {
         isValidEmail:function(email) {
@@ -49,43 +44,12 @@ var loginApp = new Vue({
             this.$http.patch("api/misc/register", json)
                 .then((response) => {
                     alert(response.body.message);
+                    this.$session.start()
+                    this.$session.set("token", response.headers.get("x-auth"));
                     window.location.href = "/dashboard.html";
                 }, (error) => {
                     alert(error.body.message);
                 })
-            
-        }
-    }
-});
-
-var dashboard = new Vue({
-    router,
-    store,
-    el: "#createNewPoll",
-    data: {
-        pollname: "",
-        polloptions: ""
-    },
-    methods: {
-        createPoll: function(){
-            if(this.pollname == "" || this.pollname == undefined
-                || this.polloptions == "" || this.polloptions == undefined){
-                alert("Enter Poll Name and the Poll Options");
-                alert();
-            }
-            else{
-                var json = {
-                    pollName: this.pollname,
-                    options: this.polloptions.split("\n")
-                };
-
-                this.$http.post("api/poll", json)
-                    .then((response) => {
-                        alert(response);
-                    }, (error) => {
-                        alert(error);
-                    })
-            }
             
         }
     }

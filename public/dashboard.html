@@ -13,6 +13,7 @@
             Options
             <div><textarea v-model="polloptions"></textarea></div>
             <input v-on:click="createPoll" type="button" value="Create !!!"> 
+            <input v-on:click="logout" type="button" value="Logout"> 
         </div>
         <div id="pollList">
             <h2> Poll List </h2>
@@ -20,7 +21,11 @@
 
         <script type="text/javascript" src="https://unpkg.com/vue"></script>
         <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
-        <script type="text/javascript" src="javascripts/main.js"></script>
+        <script src="https://unpkg.com/vuex@2.0.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-session@1.0.0/index.min.js"></script>
+        <script type="text/javascript" src="javascripts/config.js"></script>
+        <script type="text/javascript" src="javascripts/dashbaord.js"></script>
     </body>
 </html>
