@@ -21,7 +21,30 @@ router.get('/:_id', function(req, res, next) {
                     if(votes.length == 0)
                         res.status(404).send(utils.genericFailure("Resource Not Found!!!"));
                     else{
-                        res.status(200).send(utils.genericFetchSuccess(Vote, votes));
+
+                        var dataArray = [];
+                        var backgroundColorArray = [];
+                        var labelsArray = [];
+                        
+                        votes.forEach((vote) => {
+                            dataArray.push(vote.count);
+                            backgroundColorArray.push(utils.getRandomColor());
+                            labelsArray.push(vote._id);
+                        });
+
+                        var data = {
+                            type: 'pie',
+                            data: {
+                                datasets: [{
+                                    data: dataArray,
+                                    backgroundColor: backgroundColorArray
+                                }],
+                                labels: labelsArray
+                            }
+                        };
+
+
+                        res.status(200).send(utils.genericFetchSuccess(Vote, data));
                     }
                 })
                 .catch((e) => {
@@ -37,7 +60,9 @@ router.get('/:_id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-    var user = req.userObj;
+    var _id = req.params._id;
+    if(utils.isNullOrUndefined(_id)){
+        var user = req.userObj;
     var voteObj = _.pick(req.body, ["pollId", "option"]);
     voteObj.creatorId = user._id;
 
@@ -65,6 +90,10 @@ router.post('/', function(req, res, next) {
     }
     catch(e){
         res.status(404).send(utils.genericFailure("Invalid Poll Id !!!"))
+    }
+    }
+    else{
+
     }
 });
 

@@ -6,14 +6,16 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" >
     </head>
     <body>
-        <div id="login-reg-from">
-            <h2> {{ appHeading }} </h2>
-            <div><input v-model="email" type="email" placeholder="Email"></div>
-            <div><input v-model="password" type="password" placeholder="Password"></div>
-            <input v-on:click="register" type="button" value="Sign Up"> 
-            <input v-on:click="login" type="button" value="Login"> 
-            <small> {{ username }} </small>
-        </div>
+        <header>
+            <div id="login-reg-from" class="main-form">
+                    <h2> {{ appHeading }} </h2>
+                    <div><input v-model="email" type="email" placeholder="Email"></div>
+                    <div><input v-model="password" type="password" placeholder="Password"></div>
+                    <input v-on:click="register" type="button" value="Sign Up"> 
+                    <input v-on:click="login" type="button" value="Login"> 
+                    <small> {{ username }} </small>
+                </div>
+        </header>
 
         <script type="text/javascript" src="https://unpkg.com/vue"></script>
         <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>

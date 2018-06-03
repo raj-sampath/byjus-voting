@@ -6,17 +6,32 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" >
     </head>
     <body>
-        <div id="createNewPoll">
-            <h2> Create Poll </h2>
-            <h3> Make New Poll </h3>
-            <div>Title <input v-model="pollname" type="text" placeholder="Poll Name ..." /> </div>
-            Options
-            <div><textarea v-model="polloptions"></textarea></div>
-            <input v-on:click="createPoll" type="button" value="Create !!!"> 
-            <input v-on:click="logout" type="button" value="Logout"> 
-        </div>
-        <div id="pollList">
-            <h2> Poll List </h2>
+        <input v-on:click="logout" type="button" value="Logout !!!" class="logout"> 
+        <div id="allPollContent" class="allDashboardContent">
+            <div id="createNewPoll" class="createNewPoll">
+                <h2> Create Poll </h2>
+                <h3> Make New Poll </h3>
+                <div class="optionTitle">Title <input v-model="pollname" type="text" placeholder="Poll Name ..." /> </div>
+                Options
+                <div><textarea v-model="polloptions"></textarea></div>
+                <input v-on:click="createPoll" type="button" value="Create !!!"> 
+            </div>
+            
+            <div id="pollManupilation" class="pollManupilation">
+                <h2> Poll List </h2>
+                <table class="pollTable">
+                    <tr>
+                        <th>Poll Title</th>
+                        <th>View</th>
+                        <th>Remove</th>
+                    </tr>
+                    <tr v-for="poll in pollList">
+                        <td>{{ poll.pollName }}</td>
+                        <td> <input v-on:click="view(poll);" type="button" value="View"> </input> </td>
+                        <td> <input v-on:click="remove(poll);" v-if="poll.thisUser  " type="button" value="Remove"> </input></td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <script type="text/javascript" src="https://unpkg.com/vue"></script>

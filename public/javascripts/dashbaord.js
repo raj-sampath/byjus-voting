@@ -1,10 +1,11 @@
 var dashboard = new Vue({
     router,
     store,
-    el: "#createNewPoll",
+    el: "#allPollContent",
     data: {
         pollname: "",
-        polloptions: ""
+        polloptions: "",
+        pollList: []
     },
     beforeCreate: function(){
         if (!this.$session.exists()) {
@@ -12,7 +13,12 @@ var dashboard = new Vue({
             window.location.href = "/login.html";
           }
           else{
-              alert("Welocme to Dashboard")
+            this.$http.get("api/poll", {headers: {"x-auth": this.$session.get("token")}})
+            .then((response) => {
+                this.pollList = response.body.data;
+            }, (error) => {
+                alert(error);
+            })
           }
     },
     methods: {
@@ -30,9 +36,14 @@ var dashboard = new Vue({
 
                 this.$http.post("api/poll", json, {headers: {"x-auth": this.$session.get("token")}})
                     .then((response) => {
-                        alert(response);
-                        this.pollname = "";
-                        this.polloptions = "";
+                        if(response.body.status === "SUCCESS"){
+                            alert("Poll created Successfully !!!");
+                            window.location.href = "/dashboard.html";
+                        }
+                        else{
+                            alert(response.body.message);
+                        }
+                        
                     }, (error) => {
                         alert(error);
                     })
@@ -43,6 +54,23 @@ var dashboard = new Vue({
             this.$session.destroy();
             alert("Logout Successful !!!");
             window.location.href = "/login.html";
+        },
+        view: function(poll){
+            window.location.href = "/votes.html?" + poll._id;
+        },
+        remove: function(poll){
+            this.$http.delete("api/poll/" + poll._id, {headers: {"x-auth": this.$session.get("token")}})
+            .then((response) => {
+                if(response.body.status === "SUCCESS"){
+                    alert("Poll Deleted Successfully !!!");
+                    window.location.href = "/dashboard.html";
+                }
+                else{
+                    alert("Some Error Occured " + response.body.message);
+                }
+            }, (error) => {
+                alert(error.body.message);
+            })
         }
     }
 });

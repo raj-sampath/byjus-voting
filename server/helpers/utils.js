@@ -1,4 +1,5 @@
 const constants = require("./constants");
+var randomColor = require('randomcolor');
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -70,5 +71,6 @@ module.exports = {
             return "Invalid Token";
         }
     },
-    checkPassword: (hash, plainText) => bcrypt.compareSync(plainText, hash)
+    checkPassword: (hash, plainText) => bcrypt.compareSync(plainText, hash),
+    getRandomColor: () => randomColor({format: "rgba", luminosity: "dark", alpha: 1})
 }

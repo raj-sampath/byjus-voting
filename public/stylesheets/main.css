@@ -12,6 +12,10 @@ Dark Blue: #1976D2;
     box-sizing: border-box;
 }
 
+body {
+    margin-top: 100px
+}
+
 html {
     color: #555;
     font-family: 'Roboto', 'Arial', sans-serif;
@@ -20,11 +24,6 @@ html {
     font-size: 20px;
 }
 
-.login-reg-from {
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-}
 
 h1, h2, h3 {
     font-weight: 300;
@@ -40,6 +39,12 @@ h1 {
     word-spacing: 3px;
 }
 
+textarea {
+    margin-top: 20px;
+    width: 95%;
+    height: 100px;
+}
+
 h2 {
     margin-top: 0;
     margin-bottom: 30px;
@@ -49,3 +54,83 @@ h2 {
     text-transform: uppercase;
 }
 
+header{
+    transform: translateY(10%);
+    margin-top: 200px;
+
+}
+
+.main-form{
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(235, 233, 233);
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+}
+
+.login-reg-from div imput {
+    font-size: 150%;
+}
+
+.createNewPoll{
+    margin-bottom: 50px;
+}
+
+.pollManupilation {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.allDashboardContent {
+    margin-left: 35%;
+    margin-right: 35%;
+    padding: 20px;
+    background-color: rgb(235, 233, 233);
+}
+
+.allVotesData {
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.castVotes {
+    margin-bottom: 25px;
+}
+
+.hiddenText {
+    visibility: hidden;
+}
+
+.chart {
+    max-width: 300px;
+}
+
+.back {
+    float: left;
+    margin-left: 50px;
+}
+
+.logout {
+    float: right;
+    margin-right: 50px;
+}
+
+.optionTitle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.optionTitle input {
+    margin-left: 20px;
+    width: 79%;
+    height: 25px;
+}

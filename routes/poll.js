@@ -23,6 +23,33 @@ router.get('/', function(req, res, next) {
         });
 });
 
+router.get('/:_id', function(req, res, next) {
+    var _id = req.params._id;
+    if(utils.isNullOrUndefined(_id)){
+        res.status(401).send(utils.genericFailure("Invalid Request"))
+    }
+    else{
+        try{
+            var objId = ObjectId(_id);
+            var user = req.userObj;
+            Poll.findById(_id)
+                .then((poll) => {
+                    if(utils.isNullOrUndefined(poll))
+                        res.status(404).send(utils.genericFailure("Poll Not Found"))
+                    else{
+                        res.status(200).send(utils.genericFetchSuccess(Poll, poll));
+                    }
+                })
+                .catch((error) => {
+                    res.status(500).send(utils.genericFailure("Server Error"))
+                })
+        }
+        catch(e){
+            res.status(401).send(utils.genericFailure("Invalid Resource Id"))
+        }
+    }
+});
+
 router.post('/', function(req, res, next) {
     var user = req.userObj;
     var pollObj = _.pick(req.body, ["pollName", "options"]);

@@ -18,13 +18,28 @@ var loginApp = new Vue({
             return re.test(email);
           },
         login: function(){
-            if(this.$Store == undefined){
-                this.$Store = {token : "Hello Moto" };
-                alert("Added Now : " + this.$Store.token);
+            if(this.email == "" || !this.isValidEmail(this.email)){
+                return alert("Invalid Email !!!");
             }
-            else{
-                alert("Existing : " + this.$Store.token);
+
+            if(this.password == "" ){
+                return alert("Invalid Password !!!");
             }
+
+            var json = {
+                email: this.email,
+                password: this.password
+            };
+
+            this.$http.patch("api/misc/login", json)
+                .then((response) => {
+                    alert("Welcome to Byjus Polling App !!!");
+                    this.$session.start()
+                    this.$session.set("token", response.headers.get("x-auth"));
+                    window.location.href = "/dashboard.html";
+                }, (error) => {
+                    alert(error.body.message);
+                })
         },
         register: function(){
 
@@ -43,7 +58,7 @@ var loginApp = new Vue({
 
             this.$http.patch("api/misc/register", json)
                 .then((response) => {
-                    alert(response.body.message);
+                    alert("Welcome to Byjus Polling App !!!");
                     this.$session.start()
                     this.$session.set("token", response.headers.get("x-auth"));
                     window.location.href = "/dashboard.html";
