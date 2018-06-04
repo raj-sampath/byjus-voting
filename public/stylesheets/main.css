@@ -54,6 +54,10 @@ h2 {
     text-transform: uppercase;
 }
 
+h3 {
+    text-align: center;
+}
+
 header{
     transform: translateY(10%);
     margin-top: 200px;
@@ -69,12 +73,20 @@ header{
 }
 
 table, th, td {
+    text-align: center;
+    width: 100%;
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-th, td {
+th{
     padding: 15px;
+    font-size: 90%
+}
+
+td {
+    padding: 10px;
+    font-size: 80%;
 }
 
 .login-reg-from div imput {
@@ -129,13 +141,20 @@ th, td {
     margin-right: 50px;
 }
 
+.optionOptions {
+    font-weight: bold;
+    font-size: 90%
+}
+
 .optionTitle {
     margin-top: 20px;
     margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 90%
 }
 
 .optionTitle input {
     margin-left: 20px;
-    width: 79%;
+    width: 80%;
     height: 25px;
 }

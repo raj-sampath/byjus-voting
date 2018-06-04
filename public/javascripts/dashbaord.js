@@ -17,7 +17,7 @@ var dashboard = new Vue({
             .then((response) => {
                 this.pollList = response.body.data;
             }, (error) => {
-                alert(error);
+                alert(error.data.message);
             })
           }
     },
@@ -26,7 +26,6 @@ var dashboard = new Vue({
             if(this.pollname == "" || this.pollname == undefined
                 || this.polloptions == "" || this.polloptions == undefined){
                 alert("Enter Poll Name and the Poll Options");
-                alert();
             }
             else{
                 var json = {

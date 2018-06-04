@@ -62,22 +62,22 @@ router.post('/', function(req, res, next) {
     pollObj.creatorId = user._id;
     pollObj.options = utils.cleanOtionsArray(pollObj.options);
 
-    var poll = Poll(pollObj);
-    poll.save()
-        .then((createdPoll) => {
-            res.status(200).send(utils.genericCreateSuccess(Poll, createdPoll));
-        })
-        .catch((error) => {
-
-            var errorMessage = "";
-
-            if(error.code == 11000)
-                errorMessage = "Dupicate Polls not allowed !!!"
-            else
-                errorMessage = error.message;
-
-            res.status(500).send(utils.genericFailure(errorMessage))
-        });
+    if(pollObj.options.length == 0){
+        res.status(400).send(utils.genericFailure("Please enter valid poll options"))
+    }
+    else{
+        var poll = Poll(pollObj);
+        poll.save()
+            .then((createdPoll) => res.status(200).send(utils.genericCreateSuccess(Poll, createdPoll)))
+            .catch((error) => {
+                var errorMessage = "";
+                if(error.code == 11000)
+                    errorMessage = "Dupicate Polls not allowed !!!"
+                else
+                    errorMessage = error.message;
+                res.status(500).send(utils.genericFailure(errorMessage))
+            });
+    }
 });
 
 router.delete('/:_id', function(req, res, next) {

@@ -13,7 +13,7 @@
                         <h2> Create Poll </h2>
                         <h3> Make New Poll </h3>
                         <div class="optionTitle">Title <input v-model="pollname" type="text" placeholder="Poll Name ..." /> </div>
-                        Options
+                        <span class="optionOptions">Options</span>
                         <div><textarea v-model="polloptions"></textarea></div>
                         <input v-on:click="createPoll" type="button" value="Create !!!"> 
                     </div>
@@ -29,7 +29,7 @@
                             <tr v-for="poll in pollList">
                                 <td>{{ poll.pollName }}</td>
                                 <td> <input v-on:click="view(poll);" type="button" value="View"> </input> </td>
-                                <td> <input v-on:click="remove(poll);" v-if="poll.thisUser" type="button" value="Remove"> </input></td>
+                                <td> <input v-on:click="remove(poll);" v-if="poll.thisUser" type="button" value="X"> </input></td>
                             </tr>
                         </table>
                     </div>
