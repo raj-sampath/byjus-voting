@@ -32,5 +32,5 @@
   ** Poll
   ** Vote
 * Mongoose is used as the ORM for interacting with Mongo.
-* All the apis follow the format /api/<model>
+* All the apis follow the format /api/model
 
