@@ -33,4 +33,27 @@
   ** Vote
 * Mongoose is used as the ORM for interacting with Mongo.
 * All the apis follow the format /api/model
+* GET, POST, DELETE and PATCH Methods have been used.
+* Apart from PATCH all the other methods require authentication.
+* JWT Tokens are used for securing the APIs.
+* A custom middleware is in place that takes care of securing the APIs.
+
+## Client
+
+* The Client side is written in HTML5 and CSS3.
+* The Javascript framework is VueJS.
+* VueJS is included into the application using the Vue CDN.
+
+## Config
+
+* The application is driven by a config file - ./server/config/config.json file. This file is used only for the DEV and the TEST environments. 
+* All values in this file are read and written as environment variables.
+* For setting up the same for a PRODUCTION environment the following environment variables should be set on the production server:
+ * MONGODB_URI - The MongoDB connection URL
+ * JWT_SALT - The unique salt used for creating the JWT tokens
+ * SALT_ROUNDS - The salt rounds for salting the passwords while encryption.
+ 
+ ## Hosting
+ 
+ * The application is hosted on Heroku : https://stark-sands-78777.herokuapp.com/
 
