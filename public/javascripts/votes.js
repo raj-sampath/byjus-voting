@@ -29,8 +29,6 @@ var votes = new Vue({
                         this.showTwitter = {visibility: "visible"}
                     else
                         this.showTwitter = {visibility: "hidden"}
-                    
-                    alert(this.showTwitter);
 
                     this.$http.get("api/vote/" + pollId, {headers: {"x-auth": this.$session.get("token")}})
                         .then((response) => {
@@ -48,7 +46,7 @@ var votes = new Vue({
         vote: function(){
             var voteCanditate = "";
             if(this.selectedOption === "Other"){
-                if(this.otherOption === ""){
+                if(this.otherOption.trim() === "" ){
                     alert("Please enter a candidate");
                 }
                 else{
