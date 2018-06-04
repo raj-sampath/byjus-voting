@@ -6,34 +6,37 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" >
     </head>
     <body>
-        <input v-on:click="logout" type="button" value="Logout !!!" class="logout"> 
-        <div id="allPollContent" class="allDashboardContent">
-            <div id="createNewPoll" class="createNewPoll">
-                <h2> Create Poll </h2>
-                <h3> Make New Poll </h3>
-                <div class="optionTitle">Title <input v-model="pollname" type="text" placeholder="Poll Name ..." /> </div>
-                Options
-                <div><textarea v-model="polloptions"></textarea></div>
-                <input v-on:click="createPoll" type="button" value="Create !!!"> 
+            <div id="allPollContent">
+                <input v-on:click="logout" type="button" value="Logout !!!" class="logout"> 
+                <div class="allDashboardContent">
+                    <div id="createNewPoll" class="createNewPoll">
+                        <h2> Create Poll </h2>
+                        <h3> Make New Poll </h3>
+                        <div class="optionTitle">Title <input v-model="pollname" type="text" placeholder="Poll Name ..." /> </div>
+                        Options
+                        <div><textarea v-model="polloptions"></textarea></div>
+                        <input v-on:click="createPoll" type="button" value="Create !!!"> 
+                    </div>
+                    
+                    <div id="pollManupilation" class="pollManupilation">
+                        <h2> Poll List </h2>
+                        <table class="pollTable">
+                            <tr>
+                                <th>Poll Title</th>
+                                <th>View</th>
+                                <th>Remove</th>
+                            </tr>
+                            <tr v-for="poll in pollList">
+                                <td>{{ poll.pollName }}</td>
+                                <td> <input v-on:click="view(poll);" type="button" value="View"> </input> </td>
+                                <td> <input v-on:click="remove(poll);" v-if="poll.thisUser" type="button" value="Remove"> </input></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-            
-            <div id="pollManupilation" class="pollManupilation">
-                <h2> Poll List </h2>
-                <table class="pollTable">
-                    <tr>
-                        <th>Poll Title</th>
-                        <th>View</th>
-                        <th>Remove</th>
-                    </tr>
-                    <tr v-for="poll in pollList">
-                        <td>{{ poll.pollName }}</td>
-                        <td> <input v-on:click="view(poll);" type="button" value="View"> </input> </td>
-                        <td> <input v-on:click="remove(poll);" v-if="poll.thisUser  " type="button" value="Remove"> </input></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
 
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
         <script type="text/javascript" src="https://unpkg.com/vue"></script>
         <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>

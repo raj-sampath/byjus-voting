@@ -10,6 +10,12 @@
             <h2>{{ pollTitle }}</h2>
             <input type="button" v-on:click="back" class="back" value="Back !!!">
             <input type="button" v-on:click="logout" class="logout" value="Logout !!!">
+            <span class="twitter-button"><a 
+                    href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
+                    class="twitter-share-button" 
+                    data-text="Just Want to Share My Poll !!! " 
+                    data-hashtags="byjus" 
+                    data-show-count="false">Tweet</a></span>
             <div class="allVotesData">
                 <div class="castVotes">
                     <p>I would like to cast my vote for</p>
@@ -23,6 +29,7 @@
             </div>
         </div>
 
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <script type="text/javascript" src="https://unpkg.com/vue"></script>
         <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>

@@ -119,6 +119,11 @@ th, td {
     margin-left: 50px;
 }
 
+.twitter-button{
+    float: right;
+    margin-right: 20px;
+}
+
 .logout {
     float: right;
     margin-right: 50px;

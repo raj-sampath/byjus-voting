@@ -25,6 +25,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:_id', function(req, res, next) {
     var _id = req.params._id;
+    var user = req.userObj;
     if(utils.isNullOrUndefined(_id)){
         res.status(401).send(utils.genericFailure("Invalid Request"))
     }
@@ -37,6 +38,11 @@ router.get('/:_id', function(req, res, next) {
                     if(utils.isNullOrUndefined(poll))
                         res.status(404).send(utils.genericFailure("Poll Not Found"))
                     else{
+                        if(poll.creatorId.toString() === user._id.toString())
+                            poll._doc.thisUser = true;
+                        else
+                            poll._doc.thisUser = false;
+
                         res.status(200).send(utils.genericFetchSuccess(Poll, poll));
                     }
                 })

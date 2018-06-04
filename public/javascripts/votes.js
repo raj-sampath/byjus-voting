@@ -8,6 +8,8 @@ var votes = new Vue({
         selectedOption: "",
         otherOption: "",
         visibility: {visibility: "hidden"},
+        authorized: {visibility: "hidden"},
+        showTwitter: false
     },
     beforeCreate: function(){
         if (!this.$session.exists()) {
@@ -21,6 +23,7 @@ var votes = new Vue({
                 .then((response) => {
                     this.pollTitle = response.body.data.pollName;
                     this.options = response.body.data.options;
+                    this.showTwitter = response.body.data.thisUser;
                     this.options.push("Other");
 
                     this.$http.get("api/vote/" + pollId, {headers: {"x-auth": this.$session.get("token")}})
