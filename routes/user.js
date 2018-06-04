@@ -7,18 +7,35 @@ const User = require("../server/models/user").User;
 
 router.patch('/register', function(req, res, next) {
   var userObj = _.pick(req.body, ["email", "password"]);
-  var user = User(userObj);
-  user.generateAuthToken();
-  user.encryptPassword();
 
-  user.save()
-    .then((createdUser) => {
-      var responseObj = utils.genericCreateSuccess(User, User.trimUser(createdUser));
-      res.status(200).header("x-auth", createdUser.tokens[0].token).send(responseObj)
-    })
-    .catch((error) => {
-      res.status(500).send(utils.genericFailure(error.message))
-    });
+  if(utils.isNullOrUndefined(userObj.password) 
+      || userObj.password == "" 
+      || userObj.password.length < 6){
+        res.status(500).send(utils.genericFailure("Password should be minimum 6 characters long"))
+  }
+  else {
+    var user = User(userObj);
+    user.generateAuthToken();
+    user.encryptPassword();
+  
+    user.save()
+      .then((createdUser) => {
+        var responseObj = utils.genericCreateSuccess(User, User.trimUser(createdUser));
+        res.status(200).header("x-auth", createdUser.tokens[0].token).send(responseObj)
+      })
+      .catch((error) => {
+  
+        var errorMessage = "";
+  
+        if(error.code == 11000)
+          errorMessage = "Email already exists"
+        else{
+          errorMessage = error.message;
+        }
+  
+        res.status(500).send(utils.genericFailure(errorMessage))
+      });
+  }
 });
 
 router.patch('/login', function(req, res, next) {
