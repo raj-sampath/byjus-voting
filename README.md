@@ -28,9 +28,9 @@
 * All the Server Side code is written in the ./routes and the ./server folders.
 * All the Client Side code is written in the ./public folder.
 * The project contains 3 models.
-  ** User
-  ** Poll
-  ** Vote
+  * User
+  * Poll
+  * Vote
 * Mongoose is used as the ORM for interacting with Mongo.
 * All the apis follow the format /api/model
 * GET, POST, DELETE and PATCH Methods have been used.
@@ -49,9 +49,9 @@
 * The application is driven by a config file - ./server/config/config.json file. This file is used only for the DEV and the TEST environments. 
 * All values in this file are read and written as environment variables.
 * For setting up the same for a PRODUCTION environment the following environment variables should be set on the production server:
- * MONGODB_URI - The MongoDB connection URL
- * JWT_SALT - The unique salt used for creating the JWT tokens
- * SALT_ROUNDS - The salt rounds for salting the passwords while encryption.
+  * MONGODB_URI - The MongoDB connection URL
+  * JWT_SALT - The unique salt used for creating the JWT tokens
+  * SALT_ROUNDS - The salt rounds for salting the passwords while encryption.
  
  ## Hosting
  
