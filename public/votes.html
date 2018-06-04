@@ -10,7 +10,7 @@
             <h2>{{ pollTitle }}</h2>
             <input type="button" v-on:click="back" class="back" value="Back !!!">
             <input type="button" v-on:click="logout" class="logout" value="Logout !!!">
-            <span class="twitter-button"><a 
+            <span v-bind:style="showTwitter" class="twitter-button"><a 
                     href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
                     class="twitter-share-button" 
                     data-text="Just Want to Share My Poll !!! " 
@@ -18,7 +18,7 @@
                     data-show-count="false">Tweet</a></span>
             <div class="allVotesData">
                 <div class="castVotes">
-                    <p>I would like to cast my vote for</p>
+                    <p class="voteText">I would like to cast my vote for</p>
                     <select v-model="selectedOption" v-on:change="valueChanged">
                         <option v-for="option in options" v-bind:value="option" >{{ option }}</option>
                     </select>

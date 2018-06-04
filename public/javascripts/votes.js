@@ -9,7 +9,7 @@ var votes = new Vue({
         otherOption: "",
         visibility: {visibility: "hidden"},
         authorized: {visibility: "hidden"},
-        showTwitter: false
+        showTwitter: {visibility: "hidden"}
     },
     beforeCreate: function(){
         if (!this.$session.exists()) {
@@ -23,8 +23,14 @@ var votes = new Vue({
                 .then((response) => {
                     this.pollTitle = response.body.data.pollName;
                     this.options = response.body.data.options;
-                    this.showTwitter = response.body.data.thisUser;
                     this.options.push("Other");
+
+                    if(response.body.data.thisUser)
+                        this.showTwitter = {visibility: "visible"}
+                    else
+                        this.showTwitter = {visibility: "hidden"}
+                    
+                    alert(this.showTwitter);
 
                     this.$http.get("api/vote/" + pollId, {headers: {"x-auth": this.$session.get("token")}})
                         .then((response) => {
@@ -34,12 +40,8 @@ var votes = new Vue({
                                 data: response.body.data.data
                             });
                         })
-                        .catch((error) => {
-
-                        })
-                }, (error) => {
-                    alert(error);
-                })
+                        .catch((error) => alert(error.body.message))
+                }, (error) => alert(error.body.message))
           }
     },
     methods: {

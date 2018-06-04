@@ -28,26 +28,17 @@ var dashboard = new Vue({
                 alert("Enter Poll Name and the Poll Options");
             }
             else{
-                var json = {
-                    pollName: this.pollname,
-                    options: this.polloptions.split("\n")
-                };
-
+                var json = { pollName: this.pollname, options: this.polloptions.split("\n") };
                 this.$http.post("api/poll", json, {headers: {"x-auth": this.$session.get("token")}})
                     .then((response) => {
                         if(response.body.status === "SUCCESS"){
                             alert("Poll created Successfully !!!");
                             window.location.href = "/dashboard.html";
                         }
-                        else{
+                        else
                             alert(response.body.message);
-                        }
-                        
-                    }, (error) => {
-                        alert(error.body.message);
-                    })
+                    }, (error) => alert(error.body.message))
             }
-            
         },
         logout: function(){
             this.$session.destroy();
@@ -64,12 +55,9 @@ var dashboard = new Vue({
                     alert("Poll Deleted Successfully !!!");
                     window.location.href = "/dashboard.html";
                 }
-                else{
+                else
                     alert("Some Error Occured " + response.body.message);
-                }
-            }, (error) => {
-                alert(error.body.message);
-            })
+            }, (error) => alert(error.body.message))
         }
     }
 });

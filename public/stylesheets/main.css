@@ -131,6 +131,10 @@ td {
     margin-left: 50px;
 }
 
+.voteText {
+    font-weight: 400;
+}
+
 .twitter-button{
     float: right;
     margin-right: 20px;
