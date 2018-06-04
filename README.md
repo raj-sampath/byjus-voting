@@ -1,4 +1,4 @@
-# Byjust Voting Application Assignment
+# Byju's Voting Application
 
 ## User Stories
 
@@ -31,7 +31,7 @@
   * User
   * Poll
   * Vote
-* Mongoose is used as the ORM for interacting with Mongo.
+* Mongoose is used as the ORM for interacting with MongoDB.
 * All the apis follow the format /api/model
 * GET, POST, DELETE and PATCH Methods have been used.
 * Apart from PATCH all the other methods require authentication.
