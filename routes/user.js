@@ -11,7 +11,7 @@ router.patch('/register', function(req, res, next) {
   if(utils.isNullOrUndefined(userObj.password) 
       || userObj.password == "" 
       || userObj.password.length < 6){
-        res.status(500).send(utils.genericFailure("Password should be minimum 6 characters long"))
+        res.status(400).send(utils.genericFailure("Password should be minimum 6 characters long"))
   }
   else {
     var user = User(userObj);
@@ -33,7 +33,7 @@ router.patch('/register', function(req, res, next) {
           errorMessage = error.message;
         }
   
-        res.status(500).send(utils.genericFailure(errorMessage))
+        res.status(400).send(utils.genericFailure(errorMessage))
       });
   }
 });

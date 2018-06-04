@@ -1,6 +1,7 @@
 const constants = require("./constants");
-var randomColor = require('randomcolor');
 
+const randomColor = require('randomcolor');
+const _ = require("lodash");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -72,5 +73,14 @@ module.exports = {
         }
     },
     checkPassword: (hash, plainText) => bcrypt.compareSync(plainText, hash),
-    getRandomColor: () => randomColor({format: "rgba", luminosity: "dark", alpha: 1})
+    getRandomColor: () => randomColor({format: "rgba", luminosity: "dark", alpha: 1}),
+    cleanOtionsArray: (arrObj) => {
+        var returnArrayObj = [];
+        arrObj.forEach((element) => {
+            if(_.trim(element) != "")
+                returnArrayObj.push(element);
+        });
+
+        return _.uniq(returnArrayObj);
+    }
 }

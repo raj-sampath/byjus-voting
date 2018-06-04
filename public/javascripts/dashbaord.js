@@ -45,7 +45,7 @@ var dashboard = new Vue({
                         }
                         
                     }, (error) => {
-                        alert(error);
+                        alert(error.body.message);
                     })
             }
             

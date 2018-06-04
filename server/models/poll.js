@@ -8,7 +8,8 @@ const utils = require("../helpers/utils");
 var PollSchema = mongoose.Schema({
     pollName: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     options: {
         type: [String],
